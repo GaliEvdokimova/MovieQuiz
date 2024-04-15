@@ -48,6 +48,7 @@ final class MovieQuizViewController: UIViewController {
     
     private var correctAnswers = 0
     
+    
     @IBOutlet private var imageView: UIImageView!
     
     @IBOutlet private var textLabel: UILabel!
@@ -61,6 +62,7 @@ final class MovieQuizViewController: UIViewController {
     @IBOutlet private var yesButton: UIButton!
     
     private var currentQuestion: QuizQuestion?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +86,7 @@ final class MovieQuizViewController: UIViewController {
         currentQuestion = firstQuestion
         let viewModel = convert(model: firstQuestion)
         show(quiz: viewModel)
+        yesButton.isEnabled = true
              }
     
     struct QuizQuestion {
@@ -113,6 +116,7 @@ final class MovieQuizViewController: UIViewController {
         let currentQuestion = questions[currentQuestionIndex]
         let givenAnswer = true
         showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
+        yesButton.isEnabled = false
     }
     private func convert(model: QuizQuestion) -> QuizStepViewModel {
         let questionStep = QuizStepViewModel(
@@ -148,6 +152,7 @@ final class MovieQuizViewController: UIViewController {
             show(quiz: viewModel)
         } else {
             currentQuestionIndex += 1
+            yesButton.isEnabled = true
             let nextQuestion = questions[currentQuestionIndex]
             let viewModel = convert(model: nextQuestion)
             show(quiz: viewModel)
@@ -162,7 +167,7 @@ final class MovieQuizViewController: UIViewController {
         let action = UIAlertAction(title: result.buttonText, style: .default) { _ in
             self.currentQuestionIndex = 0
             self.correctAnswers = 0
-            
+            self.yesButton.isEnabled = true
             let firstQuestion = self.questions[self.currentQuestionIndex]
             let viewModel = self.convert(model: firstQuestion)
             self.show(quiz: viewModel)
