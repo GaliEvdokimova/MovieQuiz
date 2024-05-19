@@ -16,17 +16,13 @@ final class StatisticServiceImplementation: StatisticServiceProtocol {
         gamesCount += 1
         let correct = userDefaults.double(forKey: Keys.correct.rawValue) + Double(count)
         userDefaults.set(correct, forKey: Keys.correct.rawValue)
-        
         let total = userDefaults.double(forKey: Keys.total.rawValue) + Double(amount)
         userDefaults.set(total, forKey: Keys.total.rawValue)
-        
         let newGame = GameRecord(correct: count, total: amount, date: Date())
-        
         if newGame.isBetterThan(bestGame) {
             bestGame = newGame
         }
     }
-    
     var totalAccuracy: Double {
         get {
             let total = userDefaults.double(forKey: Keys.total.rawValue)
@@ -34,7 +30,6 @@ final class StatisticServiceImplementation: StatisticServiceProtocol {
             return (correct/total) * 100
         }
     }
-    
     var gamesCount: Int {
         get {
             userDefaults.integer(forKey: Keys.gamesCount.rawValue)
@@ -43,7 +38,6 @@ final class StatisticServiceImplementation: StatisticServiceProtocol {
             userDefaults.setValue(newValue, forKey: Keys.gamesCount.rawValue)
         }
     }
-    
     var bestGame: GameRecord {
         get {
             guard let data = userDefaults.data(forKey: Keys.bestGame.rawValue),
@@ -61,6 +55,4 @@ final class StatisticServiceImplementation: StatisticServiceProtocol {
             userDefaults.set(data, forKey: Keys.bestGame.rawValue)
         }
     }
-    
-    
 }
