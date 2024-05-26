@@ -60,15 +60,15 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     func showNetworkError(message: String) {
         hideLoadingIndicator()
         let alert = UIAlertController(
-                    title: "Ошибка",
-                    message: message,
-                    preferredStyle: .alert)
-                
-                let action = UIAlertAction(title: "Попробовать ещё раз",
-                                           style: .default) { [weak self] _ in
-                    guard let self = self else { return }
-                    
-                    self.presenter.restartGame()
+            title: "Ошибка",
+            message: message,
+            preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Попробовать ещё раз",
+                                   style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            
+            self.presenter.restartGame()
         }
         alert.addAction(action)
     }
@@ -98,12 +98,12 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
             guard let self else { return }
             self.presenter.restartGame()
         }
-            alert.addAction(action)
-            alert.view.accessibilityIdentifier = "Game result"
-            self.present(alert, animated: true, completion: nil)
+        alert.addAction(action)
+        alert.view.accessibilityIdentifier = "Game result"
+        self.present(alert, animated: true, completion: nil)
         yesButton.isEnabled = true
         noButton.isEnabled = true
-        }
+    }
 }
 /*
  Mock-данные
@@ -167,4 +167,4 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
  Настоящий рейтинг: 5,8
  Вопрос: Рейтинг этого фильма больше чем 6?
  Ответ: НЕТ
-*/
+ */

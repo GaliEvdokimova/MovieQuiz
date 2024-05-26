@@ -31,11 +31,11 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
             questionNumber: "\(currentQuestionIndex + 1)/\(questionsAmount)")
     }
     func isLastQuestion() -> Bool {
-           currentQuestionIndex == questionsAmount - 1
-       }
+        currentQuestionIndex == questionsAmount - 1
+    }
     func switchToNextQuestion() {
-           currentQuestionIndex += 1
-       }
+        currentQuestionIndex += 1
+    }
     func yesButtonClicked() {
         didAnswer(isYes: true)
     }
@@ -71,7 +71,7 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
                 title: "Этот раунд окончен!",
                 text: text,
                 buttonText: "Сыграть ещё раз")
-                viewController?.show(quiz: viewModel)
+            viewController?.show(quiz: viewModel)
         } else {
             self.switchToNextQuestion()
             questionFactory?.requestNextQuestion()
@@ -80,16 +80,16 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
     func makeResultsMessage() -> String {
         statisticService?.store(correct: correctAnswers, total: questionsAmount)
         let totalPlaysCountLine = "Количество сыгранных квизов: \(statisticService.gamesCount)"
-                let currentGameResultLine = "Ваш результат: \(correctAnswers) из \(questionsAmount)"
-                let bestGameInfoLine = "Рекорд: \(statisticService.bestGame.correct)/\(statisticService.bestGame.total)"
-                + " (\(statisticService.bestGame.date.dateTimeString))"
-                let averageAccuracyLine = "Средняя точность: \(String(format: "%.2f", statisticService.totalAccuracy))%"
-                
-                let resultMessage = [
-                    currentGameResultLine, totalPlaysCountLine, bestGameInfoLine, averageAccuracyLine
-                ].joined(separator: "\n")
-                
-                return resultMessage
+        let currentGameResultLine = "Ваш результат: \(correctAnswers) из \(questionsAmount)"
+        let bestGameInfoLine = "Рекорд: \(statisticService.bestGame.correct)/\(statisticService.bestGame.total)"
+        + " (\(statisticService.bestGame.date.dateTimeString))"
+        let averageAccuracyLine = "Средняя точность: \(String(format: "%.2f", statisticService.totalAccuracy))%"
+        
+        let resultMessage = [
+            currentGameResultLine, totalPlaysCountLine, bestGameInfoLine, averageAccuracyLine
+        ].joined(separator: "\n")
+        
+        return resultMessage
     }
     
     func didLoadDataFromServer() {

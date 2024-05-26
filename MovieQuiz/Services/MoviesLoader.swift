@@ -12,10 +12,10 @@ protocol MoviesLoading {
 }
 struct MoviesLoader {
     // MARK: - NetworkClient
-    private var networkClient = NetworkClient ()
+    private var networkClient: NetworkRouting
     
     init(networkClient: NetworkRouting = NetworkClient()) {
-        self.networkClient = networkClient as! NetworkClient
+        self.networkClient = networkClient
     }
     
     // MARK: - URL
