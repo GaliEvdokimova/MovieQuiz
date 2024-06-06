@@ -6,6 +6,7 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     
     private var presenter: MovieQuizPresenter!
     
+    
     private var alertPresenter: AlertPresenter?
     
     @IBOutlet private var imageView: UIImageView!
